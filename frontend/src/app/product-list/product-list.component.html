@@ -1,0 +1,20 @@
+<div class="product-list">
+    <div *ngFor="let product of products" class="product-card" (click)="selectedChange(product)">
+      <img [src]="product.picture_url" alt="{{ product.name }}" class="product-image"/>
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.short_description }}</p>
+      <p>Price: {{ product.price_huf | currency:'HUF' }}</p>
+    </div>
+    <div *ngIf="selectedProduct">
+      <img [src]="selectedProduct.picture_url" alt="{{ selectedProduct.name }}" class="product-image"/>
+      <h3>{{ selectedProduct.name }}</h3>
+      <p>{{ selectedProduct.short_description }}</p>
+      <p>Price: {{ selectedProduct.price_huf | currency:'HUF' }}</p>
+      <div *ngFor="let type of selectedProduct.types">
+        <p>{{type.type}}</p>
+        <p>{{type.type_value}}</p>
+        <p>{{type.available_count}}</p>
+      </div>
+    </div>
+  </div>
+  

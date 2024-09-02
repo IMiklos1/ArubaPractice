@@ -1,6 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Type } from './type';
 
-@Entity()
+@Entity({
+  name: "product"
+})
 export class Product {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -16,5 +19,7 @@ export class Product {
 
   @Column()
   short_description!: string;
-    types: any;
+  
+  @OneToMany(() => Type, (type) => type.product)
+  types!: Promise<Type[]>;
 }

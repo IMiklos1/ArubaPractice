@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { IProductService } from '../service/interfaces/IProductService';
 import { ProductService } from '../service/ProductService';
 import { Product } from '../models/entities/product';
+import { DataSource } from 'typeorm';
 
 export class ProductController {
     private productService: IProductService;
@@ -21,6 +22,22 @@ export class ProductController {
         }
     }
 
+    async getAll(req: Request, res: Response): Promise<Response> {
+        try {
+            const products = await this.productService.getAll();
+            products.forEach(p => console.log(p.name));
+            if (products) {
+                return res.status(200).json(products);
+            }
+            else {
+                return res.status(404).json({ error: 'No product found' });
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({error: 'Failed to retrive products.'});
+        }
+    }
+
     async getProductById(req: Request, res: Response): Promise<Response> {
         const id = parseInt(req.params.id, 10);
         try {
@@ -31,6 +48,7 @@ export class ProductController {
                 return res.status(404).json({ error: 'Product not found' });
             }
         } catch (error) {
+            console.error(error);
             return res.status(500).json({ error: 'Failed to retrieve product' });
         }
     }

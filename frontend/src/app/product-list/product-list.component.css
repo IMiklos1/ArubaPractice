@@ -1,0 +1,32 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  

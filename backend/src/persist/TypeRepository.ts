@@ -1,9 +1,15 @@
-import { Repository, EntityRepository } from 'typeorm';
+import { Repository, EntityRepository, DataSource } from 'typeorm';
 import { Type } from '../models/entities/type';
 import { ITypeRepository } from './interfaces/ITypeRepository';
+import { AppDataSource } from '../context/dataSource';
+import { Product } from '../models/entities/product';
 
-@EntityRepository(Type)
 export class TypeRepository extends Repository<Type> implements ITypeRepository {
+    constructor()
+    {
+        super(Type, AppDataSource.createEntityManager());
+    }
+    
     async createType(type: Type): Promise<Type> {
         return await this.save(type);
     }
