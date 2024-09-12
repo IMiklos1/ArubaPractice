@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 import { IUserService } from '../service/interfaces/IUserService';
 import { UserService } from '../service/UserService';
 import { User } from '../models/entities/user';
-import { DataSource } from 'typeorm';
 
 export class UserController {
     private userService: IUserService;

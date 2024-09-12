@@ -1,5 +1,6 @@
 import express from 'express';
 import 'reflect-metadata';
+import authUserController from './routes/AuthUserRoutes';
 import userRouter from './routes/UserRoutes';
 import productRouter from './routes/ProductRoutes';
 import cors from 'cors';
@@ -17,8 +18,8 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
+app.use('/auth', authUserController)
 app.use('/users', userRouter);
-
 app.use('/products', productRouter);
 
 app.listen(port, () => {
